@@ -1,24 +1,23 @@
 class Matrix:
     def __init__(self, matrix_string):
-        # variables
+        # class variables
         self.rows = []
         self.columns = []
-        # constant
-        self.row_count = matrix_string.count('\n') + 1
 
         # split the input into arrays of rows
-        self.input = matrix_string.split('\n')
+        self.input = matrix_string.splitlines()
 
         # convert arrays of rows from str to int
-        for i in range(self.row_count):
-            self.rows.append(self.input[i].split(' '))
-            self.rows[i] = [int(j) for j in self.rows[i]]
+        for row in self.input:
+            row = row.split()
+            row = [int(i) for i in row]
+            self.rows.append(row)
 
     def row(self, index):
         return self.rows[index - 1]
 
     def column(self, index):
-        for i in range(len(self.rows)):
-            self.columns.append(self.rows[i][index - 1])
+        for row in self.rows:
+            self.columns.append(row[index - 1])
 
         return self.columns
